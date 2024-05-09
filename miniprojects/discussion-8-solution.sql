@@ -7,9 +7,9 @@ select
     c.country_name
 from 
     departments d
-join 
+inner join 
     locations l on d.location_id = l.location_id
-join 
+inner join 
     countries c on l.country_id = c.country_id;
 
 -- Query 2: Find the name, department ID, and department name of all employees
@@ -19,7 +19,7 @@ select
     d.department_name
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id;
 
 -- Query 3: Find the name, job, department ID of employees who work in London
@@ -29,11 +29,11 @@ select
     e.department_id
 from 
     employees e
-join 
+inner join 
     jobs j on e.job_id = j.job_id
-join 
+inner join 
     departments d on e.department_id = d.department_id
-join 
+inner join 
     locations l on d.location_id = l.location_id
 where 
     l.city = 'London';
@@ -46,7 +46,7 @@ select
     e2.last_name as manager_name
 from 
     employees e1
-join 
+inner join 
     employees e2 on e1.manager_id = e2.employee_id;
 
 -- Query 5: Find employees hired after 'Jones'
@@ -64,7 +64,7 @@ select
     count(*) as no_of_employees
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id
 group by 
     d.department_name;
