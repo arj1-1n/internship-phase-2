@@ -7,9 +7,9 @@ select
     c.country_name
 from 
     departments d
-join 
+inner join 
     locations l on d.location_id = l.location_id
-join 
+inner join 
     countries c on l.country_id = c.country_id;
 
 -- Query 2: Find the name, department ID, and department name of all employees
@@ -19,7 +19,7 @@ select
     d.department_name
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id;
 
 -- Query 3: Find the name, job, department ID of employees who work in London
@@ -29,11 +29,11 @@ select
     e.department_id
 from 
     employees e
-join 
+inner join 
     jobs j on e.job_id = j.job_id
-join 
+inner join 
     departments d on e.department_id = d.department_id
-join 
+inner join 
     locations l on d.location_id = l.location_id
 where 
     l.city = 'London';
@@ -46,7 +46,7 @@ select
     e2.last_name as manager_name
 from 
     employees e1
-join 
+inner join 
     employees e2 on e1.manager_id = e2.employee_id;
 
 -- Query 5: Find employees hired after 'Jones'
@@ -64,7 +64,7 @@ select
     count(*) as no_of_employees
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id
 group by 
     d.department_name;
@@ -76,7 +76,7 @@ select
     datediff(jh.end_date, jh.start_date) as days_between
 from 
     job_history jh
-join 
+inner join 
     jobs j on jh.job_id = j.job_id
 where 
     j.department_id = 90;
@@ -88,9 +88,9 @@ select
     e2.first_name as manager_first_name
 from 
     employees e1
-join 
+inner join 
     employees e2 on e1.manager_id = e2.employee_id
-join 
+inner join 
     departments d on e1.department_id = d.department_id;
 
 -- Query 9: Display department name, manager name, and city
@@ -100,9 +100,9 @@ select
     l.city
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id
-join 
+inner join 
     locations l on d.location_id = l.location_id
 where 
     e.employee_id = d.manager_id;
@@ -113,7 +113,7 @@ select
     avg(e.salary) as average_salary
 from 
     employees e
-join 
+inner join 
     jobs j on e.job_id = j.job_id
 group by 
     j.job_title;
@@ -125,7 +125,7 @@ select
     e.salary - j.min_salary as salary_difference
 from 
     employees e
-join 
+inner join 
     jobs j on e.job_id = j.job_id;
 
 -- Query 12: Display job history of employees currently earning more than $10000
@@ -133,7 +133,7 @@ select
     jh.*
 from 
     job_history jh
-join 
+inner join 
     employees e on jh.employee_id = e.employee_id
 where 
     e.salary > 10000;
@@ -146,9 +146,9 @@ select
     e.salary
 from 
     employees e
-join 
+inner join 
     departments d on e.department_id = d.department_id
-join 
+inner join 
     job_history jh on e.employee_id = jh.employee_id
 where 
     e.employee_id = d.manager_id
