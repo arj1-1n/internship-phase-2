@@ -74,7 +74,7 @@ create table employees (
     manager_id int,
     department_id varchar(10),
     constraint fk_manager_department foreign key (manager_id, department_id) references departments(manager_id, department_id)
-);
+) engine=innodb;
 
 
 -- 6. Write a SQL statement to create a table employees including columns employee_id, first_name, last_name, job_id, salary and make sure that, the employee_id column does not contain any duplicate value at the time of insertion, and the foreign key column job_id, referenced by the column job_id of jobs table, can contain only those values which are exists in the jobs table. The InnoDB Engine have been used to create the tables. The specialty of the statement is that, The ON DELETE CASCADE that lets you allow to delete records in the employees(child) table that refer to a record in the jobs(parent) table when the record in the parent table is deleted and the ON UPDATE RESTRICT actions reject any updates.
@@ -84,7 +84,7 @@ create table employees (
     last_name varchar(50),
     job_id varchar(10) references jobs(job_id) on delete cascade on update restrict,
     salary decimal(10, 2)
-);
+) engine=innodb;
 
 
 -- 7. Write a SQL statement to create a table employees including columns employee_id, first_name, last_name, job_id, salary and make sure that, the employee_id column does not contain any duplicate value at the time of insertion, and the foreign key column job_id, referenced by the column job_id of jobs table, can contain only those values which are exists in the jobs table. The InnoDB Engine have been used to create the tables. The specialty of the statement is that, The ON DELETE SET NULL action will set the foreign key column values in the child table(employees) to NULL when the record in the parent table(jobs) is deleted, with a condition that the foreign key column in the child table must accept NULL values and the ON UPDATE SET NULL action resets the values in the rows in the child table(employees) to NULL values when the rows in the parent table(jobs) are updated.
@@ -94,7 +94,7 @@ create table employees (
     last_name varchar(50),
     job_id varchar(10) references jobs(job_id) on delete set null on update set null,
     salary decimal(10, 2)
-);
+) engine=innodb;
 
 
 -- 8. Write a SQL statement to create a table employees including columns employee_id, first_name, last_name, job_id, salary and make sure that, the employee_id column does not contain any duplicate value at the time of insertion, and the foreign key column job_id, referenced by the column job_id of jobs table, can contain only those values which are exists in the jobs table. The InnoDB Engine have been used to create the tables. The specialty of the statement is that, The ON DELETE NO ACTION and the ON UPDATE NO ACTION actions will reject the deletion and any updates.
@@ -104,4 +104,4 @@ create table employees (
     last_name varchar(50),
     job_id varchar(10) references jobs(job_id) on delete no action on update no action,
     salary decimal(10, 2)
-);
+) engine=innodb;
